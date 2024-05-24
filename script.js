@@ -234,21 +234,21 @@
 
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-        const apiKey = 'your-openai-api-key';
-
+        const apiKey = 'PLACEHOLDER'
+        const apiUrl = 'https://api.gemini.com/v1/completions';
         async function performAction() {
             await waitForLoad();
 
             const currentDOMState = cleanHTML();
 
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
-                    model: 'gpt-4o',
+                    model: 'YOUR_GEMINI_MODEL',
                     response_format: { "type": "json_object" },
                     messages: [
                         {
@@ -275,7 +275,6 @@
                             content: `These are task specific rules, use them as a guide if user requests anything from this list: \n${taskSpecificRules.join('\n')}`
                         },
                     ],
-                    temperature: 0.7
                 })
             });
 
